@@ -5,6 +5,7 @@ import model.Klient;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class KlienciJpa {
     private static KlienciJpa klienciJpa;
@@ -18,7 +19,7 @@ public class KlienciJpa {
     }
 
     private EntityManager getEntityManager() {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("configuratorPC");
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("konfigurator");
 
         if (entityManager == null) {
             entityManager = entityManagerFactory.createEntityManager();
@@ -41,6 +42,17 @@ public class KlienciJpa {
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
+
+    }
+
+    public Klient getById(Integer id) {
+        return entityManager.find(Klient.class, id);
+
+    }
+
+    public List<Klient> getListaKlientow() {
+
+        return entityManager.createQuery("FROM " + Klient.class.getName()).getResultList();
 
     }
 }

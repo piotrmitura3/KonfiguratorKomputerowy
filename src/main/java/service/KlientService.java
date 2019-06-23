@@ -44,7 +44,7 @@ public class KlientService {
     }
 
     public List<Klient> pobierzKlientow(){
-        return bazaKlientow.getListaKlientow();
+        return klienciJpa.getListaKlientow();
 
     }
 }
