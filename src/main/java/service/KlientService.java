@@ -1,7 +1,6 @@
 package service;
 
 import dao.BazaKlientow;
-import dao.KlienciJpa;
 import model.Adres;
 import model.Klient;
 
@@ -10,7 +9,7 @@ import java.util.List;
 public class KlientService {
 
     private BazaKlientow bazaKlientow = new BazaKlientow();
-    private KlienciJpa klienciJpa = new KlienciJpa();
+    //private KlienciJpa klienciJpa = new KlienciJpa();
 
 
     public KlientService() {
@@ -26,7 +25,7 @@ public class KlientService {
         nowyKlient.setImie(imie);
         nowyKlient.setNazwisko(nazwisko);
         nowyKlient.setAdres(nowyAdres);
-        klienciJpa.dodajKlienta(nowyKlient);
+        bazaKlientow.dodajKlienta(nowyKlient);
         System.out.println("Dodano nowego klienta: " + nowyKlient.toString());
     }
 
@@ -44,7 +43,7 @@ public class KlientService {
     }
 
     public List<Klient> pobierzKlientow(){
-        return klienciJpa.getListaKlientow();
+        return bazaKlientow.getListaKlientow();
 
     }
 }
